@@ -17,7 +17,23 @@ public class Program
         string secim = Console.ReadLine();
         if(secim == "1")
         {
-            //
+            static void GorevOku()
+            {
+                string okunan = File.ReadAllText("gorevler.json");
+                gorevler = JsonSerializer.Deserialize<List<string>>(okunan);
+            }
+            static void JsonaYaz()
+            {
+                string donusen = JsonSerializer.Serialize(gorevler);
+                File.WriteAllText("gorevler.json", donusen);
+            }
+            static void GorevEkle()
+            {
+                Verioku();
+                gorevler.Add(Console.ReadLine());
+                Jsonayaz();
+
+            }
         }
 
         if (secim == "2") { 
