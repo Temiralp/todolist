@@ -50,4 +50,20 @@ public class Program
         (gorevler);
         File.WriteAllText("todolist.json", donusenveri);
     }
+
+    static void GoreviSil ()
+    {
+    
+    Console.Writeline ("Lutfen sileceginiz gorevi girin")
+        int silinecekGorev = int.Parse(Console.ReadLine());
+    string okunanVeri = File.ReadAllText("todolist.json");
+
+    gorevler.RemoveAt(silinecekGorev);
+
+    string donusenveri = JsonSerializer.Serialize
+        (gorevler);
+    File.WriteAllText ("todolist.json", donusenveri);
+
+
+    }
 }
