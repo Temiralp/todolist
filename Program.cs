@@ -18,23 +18,8 @@ public class Program
         string secim = Console.ReadLine();
         if (secim == "1")
         {
-            static void GorevOku()
-            {
-                string okunan = File.ReadAllText("gorevler.json");
-                gorevler = JsonSerializer.Deserialize<List<string>>(okunan);
-            }
-            static void JsonaYaz()
-            {
-                string donusen = JsonSerializer.Serialize(gorevler);
-                File.WriteAllText("gorevler.json", donusen);
-            }
-            static void GorevEkle()
-            {
-                Verioku();
-                gorevler.Add(Console.ReadLine());
-                Jsonayaz();
+            GorevEkle();
 
-            }
         }
 
         if (secim == "2")
@@ -53,17 +38,35 @@ public class Program
         }
 
     }
+    static void GorevOku()
+    {
+        string okunan = File.ReadAllText("todolist.json");
+        gorevler = JsonSerializer.Deserialize<List<string>>(okunan);
+    }
     static void GorevGuncelle()
     {
         Console.Write("degistireceginiz gorev indexini girin: ");
         int i = int.Parse(Console.ReadLine());
         Console.Write("yeni gorevi girin: ");
         string yenigorev = Console.ReadLine();
-        string okunanveri = File.ReadAllText("todolist.json");
-        gorevler = JsonSerializer.Deserialize<List<string>>(okunanveri);
+        GorevOku();
+
         gorevler[i] = yenigorev;
-        string donusenveri = JsonSerializer.Serialize
-        (gorevler);
-        File.WriteAllText("todolist.json", donusenveri);
+       JsonaYaz();
+    }
+
+    static void JsonaYaz()
+    {
+        string donusen = JsonSerializer.Serialize(gorevler);
+        File.WriteAllText("todolist.json", donusen);
+    }
+
+
+    static void GorevEkle()
+    {
+        GorevOku();
+        gorevler.Add(Console.ReadLine());
+        JsonaYaz();
+
     }
 }
