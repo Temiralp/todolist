@@ -69,4 +69,20 @@ public class Program
         JsonaYaz();
 
     }
+
+    static void GoreviSil ()
+    {
+    
+    Console.Writeline ("Lutfen sileceginiz gorevi girin")
+        int silinecekGorev = int.Parse(Console.ReadLine());
+    string okunanVeri = File.ReadAllText("todolist.json");
+
+    gorevler.RemoveAt(silinecekGorev);
+
+    string donusenveri = JsonSerializer.Serialize
+        (gorevler);
+    File.WriteAllText ("todolist.json", donusenveri);
+
+
+    }
 }
