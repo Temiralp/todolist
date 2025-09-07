@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json;
 
 
@@ -23,9 +24,18 @@ public class Program
         if (secim == "2") { 
         //
         }
-        if (secim == "3") { 
-        //
-        
+        if (secim == "3") {
+            Console.Write("degistireceginiz gorev indexini girin: ");
+            int i = int.Parse(Console.ReadLine());
+            Console.Write("yeni gorevi girin: ");
+            string yenigorev= Console.ReadLine();
+            string okunanveri = File.ReadAllText("todolist.json");
+            gorevler = JsonSerializer.Deserialize<List<string>>(okunanveri);
+            gorevler[i] = yenigorev;
+            string donusenveri = JsonSerializer.Serialize
+            (gorevler);
+            File.WriteAllText("todolist.json", donusenveri);
+
         }
 
         if (secim == "4") { 
